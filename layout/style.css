@@ -147,7 +147,7 @@ section.blarticle {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    background-color: #374b5d;
+    background-color: rgb(50 167 156);
     color: white;
     padding: 2.5em;
     border-radius: 1rem;
