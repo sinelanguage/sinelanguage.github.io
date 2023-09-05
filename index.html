@@ -31,19 +31,24 @@
         if (body.classList.contains("light")) {
           body.classList.remove("light");
           body.classList.add("dark");
-          console.log("dark");
           return;
         }
         body.classList.remove("dark");
         body.classList.add("light");
-        console.log("light");
       }
 
       function addToggleEvent(e) {
-        console.log("called");
         button.addEventListener("click", toggleScreenMode);
       }
       addToggleEvent();
+
+      function fnCalculateAge(){
+        const birthDate = new Date(1975, 1, 1);
+        const difference = Date.now() - birthDate.getTime(); 
+        const  ageDate = new Date(difference); 
+        const calculatedAge =   Math.abs(ageDate.getUTCFullYear() - 1970);
+        return calculatedAge
+      }
     </script>
   </body>
 </html>
