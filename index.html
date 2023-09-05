@@ -47,12 +47,13 @@
       }
 
       function formatIntro(){
-        const introTxt = `I'm a ${calcAge()} year old father, developer, builder, musician, electronic music
+        const introTxt = `I am a ${calcAge()} year old father, developer, builder, musician, electronic music
         producer, creative technologist, mentor, synthesizer officianado,
         petrolhead and auto enthusiast.`;
 
-        document.querySelector(".intro").textContent = introTxt;
+        document.querySelector(".intro").innerText = introTxt;
       }
+        formatIntro()
     </script>
   </body>
 </html>
