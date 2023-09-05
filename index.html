@@ -26,19 +26,24 @@
   </main>
   <script>
     function toggleScreenMode() {
-      const body = document.querySelector("body");
-      if (body.classList.contains("light")) {
-        body.classList.remove("light");
-        body.classList.add("dark");
+      const LIGHT = "light";
+      const DARK = "dark";
+      const CLASSLIST = [LIGHT, DARK]
+      const BODY_EL = "body"
+      const body_el = document.querySelector(BODY);
+      if (body_el.classList.contains(CLASSLIST[0])) {
+        body_el.classList.remove(CLASSLIST[0]);
+        body_el.classList.add(CLASSLIST[1]);
         return;
       }
-      body.classList.remove("dark");
-      body.classList.add("light");
+      body_el.classList.remove(CLASSLIST[1]);
+      body_el.classList.add(CLASSLIST[0]);
     }
 
     function addToggleEvent() {
+      const CLICK = "click";
       button = document.getElementById("toggle");
-      button.addEventListener("click", toggleScreenMode);
+      button.addEventListener(CLICK, toggleScreenMode);
     }
     addToggleEvent();
 
@@ -46,16 +51,17 @@
       const birthDate = new Date(1975, 1, 1);
       const difference = Date.now() - birthDate.getTime();
       const ageDate = new Date(difference);
-      const calculatedAge = Math.abs(ageDate.getUTCFullYear() - 1970);
-      return calculatedAge
+      const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+      return age
     }
 
     function formatIntro() {
+      const INTRO = ".intro"
       const introTxt = `I am a ${calcAge()} year old father, developer, builder, musician, electronic music
         producer, creative technologist, mentor, synthesizer officianado,
         petrolhead and auto enthusiast.`;
 
-      document.querySelector(".intro").innerText = introTxt;
+      document.querySelector(INTRO).innerText = introTxt;
     }
     formatIntro();
   </script>
