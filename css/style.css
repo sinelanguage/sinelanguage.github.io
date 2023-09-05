@@ -15,31 +15,30 @@ body {
 }
 
 button {
-    border: 1px solid black;
+    border: none;
     background-color: transparent;
-    color: black;
+    color: #747474;
     margin: 4em 0 0;
-    font-size: .8rem;
-    padding: .8em;
+    font-size: 0.7rem;
+    padding: 1em;
     border-radius: 2em;
     cursor: pointer;
 }
 
 button:hover {
-    border: 1px solid black;
-    background-color: black;
+    background-color: #4c96fe;
     color: white;
 }
 
 .dark button {
-    border: 1px solid white;
+    border: none;
     background-color: transparent;
     color: white;
 }
 
 .dark button:hover {
-    border: 1px solid white;
-    background-color: white;
+    border: none;
+    background-color: #4b90ff;
     color: black;
 }
 
@@ -48,6 +47,7 @@ header h1 {
     background: #0077FF;
     background: linear-gradient(to top, #0077FF 0%, #12A0FF 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     margin: 0.5em 0 0;
 }
