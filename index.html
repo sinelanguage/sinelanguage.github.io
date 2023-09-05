@@ -11,11 +11,7 @@
     <header>
       <button id="toggle" name="toggle">Toggle Dark Mode</button>
       <h1>Adam Winick</h1>
-      <p>
-        I'm a 48 year old father, developer, builder, musician, electronic music
-        producer, creative technologist, mentor, synthesizer officianado,
-        petrolhead and auto enthusiast.
-      </p>
+      <p class="intro><!--introTxt--></p>
     </header>
     <main>
       <h3>My approach to all things</h3>
@@ -42,12 +38,20 @@
       }
       addToggleEvent();
 
-      function fnCalculateAge(){
+      function calcAge(){
         const birthDate = new Date(1975, 1, 1);
         const difference = Date.now() - birthDate.getTime(); 
         const  ageDate = new Date(difference); 
         const calculatedAge =   Math.abs(ageDate.getUTCFullYear() - 1970);
         return calculatedAge
+      }
+
+      function formatIntro(){
+        const introTxt = `I'm a ${calcAge()} year old father, developer, builder, musician, electronic music
+        producer, creative technologist, mentor, synthesizer officianado,
+        petrolhead and auto enthusiast.`;
+
+        document.querySelector(".intro").textContent = introTxt;
       }
     </script>
   </body>
