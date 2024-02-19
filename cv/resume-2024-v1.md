@@ -10,7 +10,7 @@ Creative Coder via music technology and creative coding languages and rendering 
 
 ### Contact
 [Ph: 416 509 8333](tel:4165098333)  
-[Email: sinelanguage@gmailcom](sinelanguage@gmail.com)  
+[Email: sinelanguage@gmail.com](sinelanguage@gmail.com)  
 [URL: adamwinick.com](http://www.adamwinick.com)  
 [Github: github.com/sinelanguage](github.com/sinelanguage)  
 
