@@ -1,4 +1,4 @@
-![GitHub Logo](logo.png)
+![Adam Winick logo](logo.png)
 # Adam Winick
 **Senior Modern 2024 Front End Javascript Developer 
 Hybrid Designer / Developer  
