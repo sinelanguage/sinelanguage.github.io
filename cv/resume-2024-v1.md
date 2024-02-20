@@ -2,7 +2,7 @@
 # Adam Winick
 **Senior Modern Front End Javascript Developer 
 Hybrid Designer / Developer  
-for Apps, Web, and Mobile  
+for Apps, Web, and Mobile UI
 Senior Level Archicture and System design for Design Systems and  
 Enterprise Application Middle and Front Ends at Scale  
 In progress of mastering design build and CICD apps at scale on Apple/iOS platforms  
