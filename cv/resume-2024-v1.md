@@ -9,7 +9,6 @@ In progress of mastering design build and CICD apps at scale on Apple/iOS platfo
 Creative Coder via music technology and creative coding languages and rendering engines**
 
 ### Contact
-[Ph: 416 509 8333](tel:4165098333)  
 [Email: sinelanguage@gmail.com](sinelanguage@gmail.com)  
 [URL: adamwinick.com](http://www.adamwinick.com)  
 [Github: github.com/sinelanguage](github.com/sinelanguage)  
