@@ -10,8 +10,8 @@ Creative Coder via music technology and creative coding languages and rendering 
 
 ### Contact
 [Email: sinelanguage@gmail.com](sinelanguage@gmail.com)  
-[URL: adamwinick.com](http://www.adamwinick.com)  
-[Github: github.com/sinelanguage](github.com/sinelanguage)  
+[URL: adamwinick.com](//www.adamwinick.com)  
+[Github: github.com/sinelanguage](//github.com/sinelanguage)  
 
 ## Skills
 
