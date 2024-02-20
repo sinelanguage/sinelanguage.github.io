@@ -83,8 +83,8 @@ Sept 2016 - March 2018
 - Mentored Jr front end developers and co-ops
 - Engineered and deployed front end tooling systems
 
-Realmatters (Solidify)
-Full stack developer / Product Designer / Lead Tech Director / Lead Developer for a startup incubator
+Realmatters (Solidify)  
+Full stack developer / Product Designer / Lead Tech Director / Lead Developer for a startup incubator  
 March 2015 - Aug 2016 
 
 - Main project was a home valuation Web + Mobile App Portal + Dashboard  
