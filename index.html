@@ -30,12 +30,10 @@
       const BODY = "body"
       const body_el = document.querySelector(BODY);
       if (body_el.classList.contains(CLASSLIST[0])) {
-        body_el.classList.remove(CLASSLIST[0]);
-        body_el.classList.add(CLASSLIST[1]);
+        body_el.classList.remove(CLASSLIST[0]).add(CLASSLIST[1]);;
         return;
       }
-      body_el.classList.remove(CLASSLIST[1]);
-      body_el.classList.add(CLASSLIST[0]);
+      body_el.classList.remove(CLASSLIST[1]).add(CLASSLIST[0]);
     }
 
     function addToggleEvent() {
