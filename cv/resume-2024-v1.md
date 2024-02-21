@@ -1,6 +1,6 @@
 ![Adam Winick logo](logo.png)
-# Adam Winick
-**Senior Modern Front End Javascript Developer 
+# Adam Winick  
+**Senior Modern Front End Javascript Developer  
 Hybrid Designer / Developer  
 for Apps, Web, and Mobile UI  
 Senior Level Architecture and System design for Design Systems and  
