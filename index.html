@@ -46,17 +46,9 @@
     
     addToggleEvent();
 
-    function calcAge() {
-      const birthDate = new Date(1975, 1, 1);
-      const difference = Date.now() - birthDate.getTime();
-      const ageDate = new Date(difference);
-      const age = Math.abs(ageDate.getUTCFullYear() - 1970);
-      return age
-    }
-
     function formatIntro() {
       const INTRO = ".intro"
-      const introTxt = `I am a ${calcAge()} year old father, developer, builder, musician, electronic music
+      const introTxt = `I am a father, developer, designer, builder, musician, electronic music
         producer, creative technologist, mentor, synthesizer officianado,
         petrolhead and auto enthusiast.`;
 
