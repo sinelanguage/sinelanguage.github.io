@@ -11,7 +11,6 @@
 
 <body class="light">
   <header>
-    <button id="toggle" name="toggle">Toggle Dark Mode</button>
     <h1>Adam Winick</h1>
     <p class="intro">I am a father, developer, designer, builder, musician, electronic music producer, creative technologist, mentor, synthesizer officianado, petrolhead and auto enthusiast.</p>
   </header>
@@ -22,30 +21,6 @@
     </p>
     <p>As a web and app developer, I strive for a lean modular approach. I build high throughput UI at scale. I engineer UI as a function of UX;  enabling users with meaningful capabilities and features by way of a minimal amount of meaningful interactions.  For a real world objective example; Think of the factors involved with the following user experience. Having a key fob in your pocket enables you to lock and unlock your vehicle doors once you are within a predefined radial distance of your vehicle.  That function required zero user enabled events but performed 2 automated functions of a feature.</p>
   </main>
-  <script>
-    function toggleScreenMode() {
-      const LIGHT = "light";
-      const DARK = "dark";
-      const CLASSLIST = [LIGHT, DARK]
-      const BODY = "body"
-      const body_el = document.querySelector(BODY);
-      if (body_el.classList.contains(CLASSLIST[0])) {
-        body_el.classList.remove(CLASSLIST[0]);
-        body_el.classList.add(CLASSLIST[1]);
-        return;
-      }
-      body_el.classList.remove(CLASSLIST[1]);
-      body_el.classList.add(CLASSLIST[0]);
-    }
-
-    function addToggleEvent() {
-      const CLICK = "click";
-      button = document.getElementById("toggle");
-      button.addEventListener(CLICK, toggleScreenMode);
-    }
-    
-    addToggleEvent();
-  </script>
 </body>
 
 </html>
