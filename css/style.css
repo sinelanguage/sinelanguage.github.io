@@ -12,6 +12,7 @@
 body {
     max-width: 80vw;
     margin: 0 auto;
+    padding-top: 4em;
 }
 
 button {
