@@ -74,7 +74,7 @@ h2 {
 }
 
 h1 {
-    background: linear-gradient(180deg, #12a0ff 0%, #0077ff 100%);
+    background: linear-gradient(to top, #0077ff 0%, #12a0ff 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -98,7 +98,7 @@ p {
 
 @media (min-width: 768px) {
     .page {
-        inline-size: min(75%, 100rem);
+        inline-size: min(75%, 1600px);
     }
 }
 
