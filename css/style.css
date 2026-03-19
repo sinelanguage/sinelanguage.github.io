@@ -5,8 +5,15 @@
     --brand-cyan: #12a0ff;
     --brand-indigo: #4567ff;
     --brand-violet: #6f74ff;
+    --background-tint: #eef6ff;
+    --background-surface: #f7fbff;
+    --background-shadow: #eef3ff;
     --surface-color: rgba(255, 255, 255, 0.72);
     --surface-border: rgba(255, 255, 255, 0.35);
+    --ambient-layer-opacity: 0.8;
+    --ambient-layer-blur: 56px;
+    --ambient-layer-radius: 42%;
+    --z-skip-link: 3;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     line-height: 1.5;
     text-rendering: optimizeLegibility;
@@ -49,7 +56,7 @@ body {
     text-decoration: none;
     transform: translateY(-150%);
     transition: transform 0.2s ease;
-    z-index: 3;
+    z-index: var(--z-skip-link);
 }
 
 .skip-link:focus-visible {
@@ -59,17 +66,16 @@ body {
 .ambient-background {
     display: none;
     position: fixed;
-    inset: -18vmax;
+    inset: -10vmax;
     overflow: hidden;
     pointer-events: none;
     z-index: 0;
-    filter: saturate(125%);
 }
 
 .has-animated-background {
     background:
         radial-gradient(circle at top, rgba(18, 160, 255, 0.16), transparent 35%),
-        linear-gradient(160deg, #eef6ff 0%, #f7fbff 45%, #eef3ff 100%);
+        linear-gradient(160deg, var(--background-tint) 0%, var(--background-surface) 45%, var(--background-shadow) 100%);
 }
 
 .has-animated-background .ambient-background {
@@ -83,10 +89,9 @@ body {
 }
 
 .ambient-background__layer {
-    border-radius: 42%;
-    opacity: 0.8;
-    filter: blur(80px);
-    will-change: transform;
+    border-radius: var(--ambient-layer-radius);
+    opacity: var(--ambient-layer-opacity);
+    filter: blur(var(--ambient-layer-blur));
 }
 
 .ambient-background__layer--base {
@@ -125,7 +130,7 @@ body {
     opacity: 0.85;
     mix-blend-mode: soft-light;
     filter: blur(10px);
-    animation: wave 16s linear infinite;
+    animation: wave 16s ease-in-out infinite;
 }
 
 .page {
@@ -140,8 +145,14 @@ body {
     border-radius: clamp(1.5rem, 3vw, 2.5rem);
     background: var(--surface-color);
     box-shadow: 0 2rem 5rem rgba(37, 57, 78, 0.12);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .has-animated-background .page {
+        background: rgba(255, 255, 255, 0.9);
+    }
 }
 
 .hero,
