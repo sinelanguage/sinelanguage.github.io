@@ -1,103 +1,109 @@
 :root {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 100%;
-    line-height: 1.35;
     color: #25394e;
+    background-color: #ffffff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.5;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
-header h1 {
-    background: #0077FF;
-    background: linear-gradient(to top, #0077FF 0%, #12A0FF 100%);
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    block-size: 100%;
+}
+
+body {
+    margin: 0;
+    min-block-size: 100vh;
+    min-block-size: 100svh;
+    display: grid;
+    place-items: center;
+    padding-block: clamp(1rem, 4vw, 3rem);
+    background: #ffffff;
+    color: inherit;
+}
+
+.skip-link {
+    position: absolute;
+    inset-block-start: 1rem;
+    inset-inline-start: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 999px;
+    background: #25394e;
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+    transform: translateY(-150%);
+    transition: transform 0.2s ease;
+}
+
+.skip-link:focus-visible {
+    transform: translateY(0);
+}
+
+.page {
+    inline-size: min(calc(100% - 2rem), 75rem);
+}
+
+.hero,
+section {
+    display: grid;
+    gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+section {
+    margin-block-start: clamp(2.5rem, 8vw, 6rem);
+}
+
+h1,
+h2,
+p {
+    margin: 0;
+}
+
+h1,
+h2 {
+    color: #25394e;
+    line-height: 1.05;
+    text-wrap: balance;
+}
+
+h1 {
+    background: linear-gradient(to top, #0077ff 0%, #12a0ff 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 2rem;
-    margin: 0
+    font-size: clamp(3.25rem, 10vw, 7rem);
 }
 
-header p {
-    font-size: 1.25rem;
+.intro {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    line-height: 1.45;
+    text-wrap: pretty;
 }
 
-.container {
-    margin: 1em;
+h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
 }
 
-main h2 {
-    font-size: 1.15rem;
+p {
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+    text-wrap: pretty;
 }
 
-main p {
-    font-size: 0.9rem;
-}
-
-
-@media screen and (min-width: 768px) {
-
-    .container {
-        width: 75%;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 100vh;
-        max-width: 1600px;
-    }
-
-    header h1 {
-        font-size: 4.5rem;
-        margin-top: 0;
-    }
-
-    header p {
-        font-size: 1.5rem;
-    }
-
-    main h2 {
-        font-size: 2.5rem;
-    }
-
-    main p {
-        font-size: 1.25rem;
+@media (min-width: 768px) {
+    .page {
+        inline-size: min(75%, 1600px);
     }
 }
 
-@media screen and (min-width: 1024px) {
-
-    header h1 {
-        font-size: 6rem;
+@media (prefers-reduced-motion: reduce) {
+    .skip-link {
+        transition: none;
     }
-
-    header p {
-        font-size: 2rem;
-    }
-
-    main h2 {
-        font-size: 2.5rem;
-    }
-
-    main p {
-        font-size: 1.35rem;
-    }
-
-}
-
-@media screen and (min-width: 1280px) {
-
-    header h1 {
-        font-size: 7rem;
-    }
-
-    header p {
-        font-size: 2.5rem;
-    }
-
-    main h2 {
-        font-size: 3rem;
-    }
-
-    main p {
-        font-size: 1.5rem;
-    }
-
 }
