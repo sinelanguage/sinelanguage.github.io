@@ -12,8 +12,14 @@
     <link href="css/style.css" rel="stylesheet" />
   </head>
 
-  <body>
+  <body class="has-animated-background">
     <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="ambient-background" aria-hidden="true">
+      <div class="ambient-background__layer ambient-background__layer--base"></div>
+      <div class="ambient-background__layer ambient-background__layer--accent"></div>
+      <div class="ambient-background__layer ambient-background__layer--glow"></div>
+      <div class="ambient-background__wave"></div>
+    </div>
     <main class="page" id="main-content" aria-labelledby="page-title">
       <header class="hero">
         <h1 id="page-title">Adam Winick</h1>
