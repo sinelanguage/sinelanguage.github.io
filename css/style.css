@@ -1,6 +1,12 @@
 :root {
     color: #25394e;
     background-color: #ffffff;
+    --brand-blue: #0077ff;
+    --brand-cyan: #12a0ff;
+    --brand-indigo: #4567ff;
+    --brand-violet: #6f74ff;
+    --surface-color: rgba(255, 255, 255, 0.72);
+    --surface-border: rgba(255, 255, 255, 0.35);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     line-height: 1.5;
     text-rendering: optimizeLegibility;
@@ -21,9 +27,12 @@ body {
     margin: 0;
     min-block-size: 100vh;
     min-block-size: 100svh;
+    position: relative;
+    isolation: isolate;
     display: grid;
     place-items: center;
     padding-block: clamp(1rem, 4vw, 3rem);
+    overflow: hidden;
     background: #ffffff;
     color: inherit;
 }
@@ -40,14 +49,99 @@ body {
     text-decoration: none;
     transform: translateY(-150%);
     transition: transform 0.2s ease;
+    z-index: 3;
 }
 
 .skip-link:focus-visible {
     transform: translateY(0);
 }
 
+.ambient-background {
+    display: none;
+    position: fixed;
+    inset: -18vmax;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+    filter: saturate(125%);
+}
+
+.has-animated-background {
+    background:
+        radial-gradient(circle at top, rgba(18, 160, 255, 0.16), transparent 35%),
+        linear-gradient(160deg, #eef6ff 0%, #f7fbff 45%, #eef3ff 100%);
+}
+
+.has-animated-background .ambient-background {
+    display: block;
+}
+
+.ambient-background__layer,
+.ambient-background__wave {
+    position: absolute;
+    inset: 0;
+}
+
+.ambient-background__layer {
+    border-radius: 42%;
+    opacity: 0.8;
+    filter: blur(80px);
+    will-change: transform;
+}
+
+.ambient-background__layer--base {
+    inset: 5% 20% 35% 0;
+    background:
+        radial-gradient(circle at 30% 35%, rgba(18, 160, 255, 0.95), transparent 48%),
+        radial-gradient(circle at 72% 45%, rgba(0, 119, 255, 0.8), transparent 42%),
+        radial-gradient(circle at 48% 70%, rgba(69, 103, 255, 0.5), transparent 38%);
+    animation: drift 22s ease-in-out infinite alternate;
+}
+
+.ambient-background__layer--accent {
+    inset: 25% 10% 5% 35%;
+    background:
+        radial-gradient(circle at 60% 30%, rgba(111, 116, 255, 0.65), transparent 42%),
+        radial-gradient(circle at 40% 68%, rgba(0, 119, 255, 0.48), transparent 34%),
+        radial-gradient(circle at 22% 34%, rgba(18, 160, 255, 0.36), transparent 28%);
+    animation: drift-reverse 26s ease-in-out infinite alternate;
+}
+
+.ambient-background__layer--glow {
+    inset: 12% 25% 18% 18%;
+    background:
+        conic-gradient(from 180deg at 50% 50%, rgba(0, 119, 255, 0.16), rgba(18, 160, 255, 0.5), rgba(111, 116, 255, 0.2), rgba(0, 119, 255, 0.16)),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.38), transparent 52%);
+    mix-blend-mode: screen;
+    opacity: 0.7;
+    animation: pulse 18s ease-in-out infinite alternate;
+}
+
+.ambient-background__wave {
+    inset: -12%;
+    background:
+        radial-gradient(circle at 20% 25%, rgba(255, 255, 255, 0.24), transparent 18%),
+        linear-gradient(130deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.22) 50%, rgba(255, 255, 255, 0.04) 100%);
+    opacity: 0.85;
+    mix-blend-mode: soft-light;
+    filter: blur(10px);
+    animation: wave 16s linear infinite;
+}
+
 .page {
     inline-size: min(calc(100% - 2rem), 75rem);
+    position: relative;
+    z-index: 1;
+}
+
+.has-animated-background .page {
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border: 1px solid var(--surface-border);
+    border-radius: clamp(1.5rem, 3vw, 2.5rem);
+    background: var(--surface-color);
+    box-shadow: 0 2rem 5rem rgba(37, 57, 78, 0.12);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
 }
 
 .hero,
@@ -74,7 +168,7 @@ h2 {
 }
 
 h1 {
-    background: linear-gradient(to top, #0077ff 0%, #12a0ff 100%);
+    background: linear-gradient(to top, var(--brand-blue) 0%, var(--brand-cyan) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -96,6 +190,52 @@ p {
     text-wrap: pretty;
 }
 
+@keyframes drift {
+    0% {
+        transform: translate3d(-4%, -3%, 0) scale(1) rotate(0deg);
+    }
+
+    100% {
+        transform: translate3d(6%, 5%, 0) scale(1.15) rotate(16deg);
+    }
+}
+
+@keyframes drift-reverse {
+    0% {
+        transform: translate3d(5%, -4%, 0) scale(1.02) rotate(0deg);
+    }
+
+    100% {
+        transform: translate3d(-8%, 6%, 0) scale(1.12) rotate(-14deg);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.98) rotate(0deg);
+        opacity: 0.55;
+    }
+
+    100% {
+        transform: scale(1.1) rotate(12deg);
+        opacity: 0.82;
+    }
+}
+
+@keyframes wave {
+    0% {
+        transform: translate3d(-6%, -2%, 0) rotate(0deg) scale(1.05);
+    }
+
+    50% {
+        transform: translate3d(4%, 3%, 0) rotate(4deg) scale(1.12);
+    }
+
+    100% {
+        transform: translate3d(-6%, -2%, 0) rotate(0deg) scale(1.05);
+    }
+}
+
 @media (min-width: 768px) {
     .page {
         inline-size: min(75%, 1600px);
@@ -105,5 +245,10 @@ p {
 @media (prefers-reduced-motion: reduce) {
     .skip-link {
         transition: none;
+    }
+
+    .ambient-background__layer,
+    .ambient-background__wave {
+        animation: none;
     }
 }
