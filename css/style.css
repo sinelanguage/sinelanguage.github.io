@@ -96,6 +96,39 @@ p {
     text-wrap: pretty;
 }
 
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-block-start: clamp(2.5rem, 8vw, 6rem);
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.65rem 1.25rem;
+    border: 1px solid #25394e;
+    border-radius: 999px;
+    color: #25394e;
+    font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.pill:hover,
+.pill:focus-visible {
+    background-color: #25394e;
+    color: #ffffff;
+    outline: none;
+}
+
+.pill:focus-visible {
+    outline: 2px solid #12a0ff;
+    outline-offset: 3px;
+}
+
 @media (min-width: 768px) {
     .page {
         inline-size: min(75%, 1600px);
@@ -103,7 +136,8 @@ p {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .skip-link {
+    .skip-link,
+    .pill {
         transition: none;
     }
 }
