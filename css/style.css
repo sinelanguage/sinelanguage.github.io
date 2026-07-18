@@ -11,6 +11,8 @@
     --toggle-bg: #ffffff;
     --toggle-fg: #25394e;
     --toggle-border: #25394e;
+    --toggle-track: #d7dee7;
+    --toggle-thumb: #25394e;
     color: var(--fg);
     background-color: var(--bg);
     color-scheme: light;
@@ -21,18 +23,20 @@
 }
 
 [data-theme="dark"] {
-    --bg: #25394e;
+    --bg: #0c1117;
     --fg: #f0f4f8;
     --heading: #f0f4f8;
     --pill-fg: #f0f4f8;
     --pill-border: #f0f4f8;
     --pill-hover-bg: #f0f4f8;
-    --pill-hover-fg: #25394e;
+    --pill-hover-fg: #0c1117;
     --skip-bg: #f0f4f8;
-    --skip-fg: #25394e;
-    --toggle-bg: #25394e;
+    --skip-fg: #0c1117;
+    --toggle-bg: #0c1117;
     --toggle-fg: #f0f4f8;
     --toggle-border: #f0f4f8;
+    --toggle-track: #25394e;
+    --toggle-thumb: #f0f4f8;
     color-scheme: dark;
 }
 
@@ -84,26 +88,15 @@ body {
     z-index: 2;
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.45rem;
     margin: 0;
-    padding: 0.55rem 1rem;
+    padding: 0.4rem 0.55rem;
     border: 1px solid var(--toggle-border);
     border-radius: 999px;
     background: var(--toggle-bg);
     color: var(--toggle-fg);
-    font: inherit;
-    font-size: 0.9rem;
-    font-weight: 500;
-    letter-spacing: 0.01em;
     cursor: pointer;
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-}
-
-.theme-toggle:hover,
-.theme-toggle:focus-visible {
-    background: var(--pill-hover-bg);
-    color: var(--pill-hover-fg);
-    outline: none;
 }
 
 .theme-toggle:focus-visible {
@@ -111,8 +104,40 @@ body {
     outline-offset: 3px;
 }
 
-.theme-toggle__label {
-    text-transform: capitalize;
+.theme-toggle__icon {
+    display: inline-flex;
+    color: inherit;
+    opacity: 0.55;
+    transition: opacity 0.2s ease;
+}
+
+.theme-toggle[aria-checked="false"] .theme-toggle__icon:first-child,
+.theme-toggle[aria-checked="true"] .theme-toggle__icon:last-child {
+    opacity: 1;
+}
+
+.theme-toggle__track {
+    position: relative;
+    inline-size: 2.4rem;
+    block-size: 1.3rem;
+    border-radius: 999px;
+    background: var(--toggle-track);
+    transition: background-color 0.2s ease;
+}
+
+.theme-toggle__thumb {
+    position: absolute;
+    inset-block-start: 0.15rem;
+    inset-inline-start: 0.15rem;
+    inline-size: 1rem;
+    block-size: 1rem;
+    border-radius: 999px;
+    background: var(--toggle-thumb);
+    transition: transform 0.2s ease;
+}
+
+.theme-toggle[aria-checked="true"] .theme-toggle__thumb {
+    transform: translateX(1.1rem);
 }
 
 .page {
@@ -208,6 +233,9 @@ p {
     body,
     .skip-link,
     .theme-toggle,
+    .theme-toggle__icon,
+    .theme-toggle__track,
+    .theme-toggle__thumb,
     .pill {
         transition: none;
     }

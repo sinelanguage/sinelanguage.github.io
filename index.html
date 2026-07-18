@@ -11,21 +11,26 @@
     <title>Adam Winick - Senior Developer, Electronic Music Producer</title>
     <script>
       (function () {
-        var key = "color-mode";
-        var mode = localStorage.getItem(key);
-        if (mode !== "light" && mode !== "dark" && mode !== "auto") {
-          mode = "auto";
-        }
-        var hour = new Date().getHours();
-        var evening = hour < 6 || hour >= 18;
-        var theme =
-          mode === "light" || mode === "dark"
-            ? mode
-            : evening
-              ? "dark"
-              : "light";
+        var evening = (function () {
+          var hour = new Date().getHours();
+          return hour < 6 || hour >= 18;
+        })();
+        var period = evening ? "evening" : "morning";
+        var theme = evening ? "dark" : "light";
+        try {
+          var raw = localStorage.getItem("color-mode-override");
+          if (raw) {
+            var parsed = JSON.parse(raw);
+            if (
+              parsed &&
+              parsed.period === period &&
+              (parsed.theme === "light" || parsed.theme === "dark")
+            ) {
+              theme = parsed.theme;
+            }
+          }
+        } catch (error) {}
         document.documentElement.dataset.theme = theme;
-        document.documentElement.dataset.mode = mode;
       })();
     </script>
     <link href="css/style.css" rel="stylesheet" />
@@ -37,9 +42,34 @@
       class="theme-toggle"
       id="theme-toggle"
       type="button"
-      aria-label="Color mode: auto. Click to change."
+      role="switch"
+      aria-checked="false"
+      aria-label="Switch to dark mode"
     >
-      <span class="theme-toggle__label">auto</span>
+      <span class="theme-toggle__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+          <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.75" />
+          <path
+            d="M12 3v2.2M12 18.8V21M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M3 12h2.2M18.8 12H21M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+          />
+        </svg>
+      </span>
+      <span class="theme-toggle__track" aria-hidden="true">
+        <span class="theme-toggle__thumb"></span>
+      </span>
+      <span class="theme-toggle__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+          <path
+            d="M16.5 13.2A6.5 6.5 0 0 1 10.8 7.5 6.6 6.6 0 1 0 16.5 13.2Z"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </span>
     </button>
     <main class="page" id="main-content" aria-labelledby="page-title">
       <header class="hero">

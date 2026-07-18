@@ -1,6 +1,5 @@
 (function () {
-  const STORAGE_KEY = "color-mode";
-  const MODES = ["auto", "light", "dark"];
+  const STORAGE_KEY = "color-mode-override";
   const EVENING_START = 18;
   const MORNING_START = 6;
 
@@ -9,46 +8,69 @@
     return hour < MORNING_START || hour >= EVENING_START;
   }
 
-  function resolveTheme(mode) {
-    if (mode === "light" || mode === "dark") {
-      return mode;
-    }
+  function currentPeriod() {
+    return isEvening() ? "evening" : "morning";
+  }
+
+  function autoTheme() {
     return isEvening() ? "dark" : "light";
   }
 
-  function getMode() {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    return MODES.includes(stored) ? stored : "auto";
+  function getOverride() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) {
+        return null;
+      }
+      const parsed = JSON.parse(raw);
+      if (
+        (parsed.theme === "light" || parsed.theme === "dark") &&
+        (parsed.period === "morning" || parsed.period === "evening")
+      ) {
+        return parsed;
+      }
+    } catch (error) {
+      // Ignore malformed storage and fall back to auto.
+    }
+    return null;
   }
 
-  function applyMode(mode) {
-    const theme = resolveTheme(mode);
+  function setOverride(theme) {
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({ theme: theme, period: currentPeriod() })
+    );
+  }
+
+  function clearOverride() {
+    localStorage.removeItem(STORAGE_KEY);
+  }
+
+  function resolveTheme() {
+    const override = getOverride();
+    if (override && override.period === currentPeriod()) {
+      return override.theme;
+    }
+    if (override) {
+      clearOverride();
+    }
+    return autoTheme();
+  }
+
+  function applyTheme(theme) {
     document.documentElement.dataset.theme = theme;
-    document.documentElement.dataset.mode = mode;
 
     const button = document.getElementById("theme-toggle");
     if (!button) {
       return;
     }
 
-    const label = button.querySelector(".theme-toggle__label");
-    if (label) {
-      label.textContent = mode;
-    }
-
-    const period = isEvening() ? "evening" : "morning";
-    const autoHint =
-      mode === "auto"
-        ? `, following ${period} (${theme})`
-        : "";
+    const isDark = theme === "dark";
+    button.setAttribute("aria-checked", isDark ? "true" : "false");
     button.setAttribute(
       "aria-label",
-      `Color mode: ${mode}${autoHint}. Click to change.`
+      isDark ? "Switch to light mode" : "Switch to dark mode"
     );
-  }
-
-  function nextMode(mode) {
-    return MODES[(MODES.indexOf(mode) + 1) % MODES.length];
   }
 
   function init() {
@@ -57,24 +79,25 @@
       return;
     }
 
-    applyMode(getMode());
+    // Drop the previous Auto/Light/Dark storage key if present.
+    localStorage.removeItem("color-mode");
+
+    applyTheme(resolveTheme());
 
     button.addEventListener("click", function () {
-      const mode = nextMode(getMode());
-      localStorage.setItem(STORAGE_KEY, mode);
-      applyMode(mode);
+      const next = resolveTheme() === "dark" ? "light" : "dark";
+      setOverride(next);
+      applyTheme(next);
     });
 
-    // Keep Auto in sync when morning/evening crosses while the tab is open.
+    // Morning/evening awareness stays on: when the period changes, auto wins again.
     window.setInterval(function () {
-      if (getMode() === "auto") {
-        applyMode("auto");
-      }
+      applyTheme(resolveTheme());
     }, 60 * 1000);
 
     document.addEventListener("visibilitychange", function () {
-      if (!document.hidden && getMode() === "auto") {
-        applyMode("auto");
+      if (!document.hidden) {
+        applyTheme(resolveTheme());
       }
     });
   }
