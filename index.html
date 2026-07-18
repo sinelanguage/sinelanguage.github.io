@@ -9,11 +9,38 @@
       content="Adam Winick is a senior developer, creative technologist, designer, builder, musician, and electronic music producer."
     />
     <title>Adam Winick - Senior Developer, Electronic Music Producer</title>
+    <script>
+      (function () {
+        var key = "color-mode";
+        var mode = localStorage.getItem(key);
+        if (mode !== "light" && mode !== "dark" && mode !== "auto") {
+          mode = "auto";
+        }
+        var hour = new Date().getHours();
+        var evening = hour < 6 || hour >= 18;
+        var theme =
+          mode === "light" || mode === "dark"
+            ? mode
+            : evening
+              ? "dark"
+              : "light";
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.dataset.mode = mode;
+      })();
+    </script>
     <link href="css/style.css" rel="stylesheet" />
   </head>
 
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
+    <button
+      class="theme-toggle"
+      id="theme-toggle"
+      type="button"
+      aria-label="Color mode: auto. Click to change."
+    >
+      <span class="theme-toggle__label">auto</span>
+    </button>
     <main class="page" id="main-content" aria-labelledby="page-title">
       <header class="hero">
         <h1 id="page-title">Adam Winick</h1>
@@ -67,5 +94,6 @@
         >
       </nav>
     </main>
+    <script src="js/theme.js"></script>
   </body>
 </html>
