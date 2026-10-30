@@ -226,13 +226,13 @@ p {
 
 @media (min-width: 768px) and (max-width: 1023px) {
     .page {
-        inline-size: min(72.5%, 1600px);
+        inline-size: min(70%, 1600px);
     }
 }
 
 @media (min-width: 1024px) {
     body {
-        padding-block: calc(clamp(1.25rem, 4svh, 2.75rem) * 1.05);
+        padding-block: calc(clamp(1.25rem, 4svh, 2.75rem) * 1.10);
     }
 
     .page {
@@ -243,7 +243,7 @@ p {
 /* 13–14" laptop viewports: keep the full page, including links, in one frame. */
 @media (max-height: 960px) and (min-width: 900px) {
     body {
-        padding-block: calc(1.75rem * 1.05);
+        padding-block: calc(1.75rem * 1.10);
     }
 
     h1 {
