@@ -141,7 +141,7 @@ body {
 }
 
 .page {
-    inline-size: min(calc(100% - 2rem), 75rem);
+    inline-size: min(calc(100% - 2.2rem), 75rem);
 }
 
 .hero,
@@ -224,7 +224,17 @@ p {
     outline-offset: 3px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1023px) {
+    .page {
+        inline-size: min(72.5%, 1600px);
+    }
+}
+
+@media (min-width: 1024px) {
+    body {
+        padding-block: calc(clamp(1.25rem, 4svh, 2.75rem) * 1.05);
+    }
+
     .page {
         inline-size: min(75%, 1600px);
     }
@@ -233,7 +243,7 @@ p {
 /* 13–14" laptop viewports: keep the full page, including links, in one frame. */
 @media (max-height: 960px) and (min-width: 900px) {
     body {
-        padding-block: 1.75rem;
+        padding-block: calc(1.75rem * 1.05);
     }
 
     h1 {
